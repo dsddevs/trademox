@@ -158,7 +158,7 @@ cors:
 
 ## 💼 SCHEMA
 
-<img width="1189" height="765" alt="Image" src="https://github.com/user-attachments/assets/8f7e6d48-89ee-47b5-87a1-9f506acf993b" />
+<img width="1189" height="765" alt="Image" src="https://github.com/user-attachments/assets/d0f7bf74-3a38-4381-b2ec-85b1fcc236a1" />
 
 ---
 
