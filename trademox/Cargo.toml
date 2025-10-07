@@ -1,0 +1,63 @@
+[package]
+name = "tradebox"
+version = "0.1.0"
+edition = "2021"
+authors = ["Davlatbek Rabbimov dsddevs@gmail.com"]
+
+[lib]
+name = "tradebox"
+path = "src/lib.rs"
+
+[[bin]]
+name = "tradebox"
+path = "src/main.rs"
+
+[dependencies]
+
+# Data fetching and handling
+yfinance-rs = "0.3.2"
+
+# Asynchronous programming
+tokio = { version = "1", features = ["full"] }
+
+# Web framework
+axum = { version = "0.8.6", features = ["default", "ws", ] }
+tokio-tungstenite = "0.28.0"
+
+# HTTP client
+tower = { version = "0.5.2", features = ["full"] }
+tower-http = { version = "0.6.6", features = ["cors", "trace"] }
+http = "1.3.1"
+
+# Date and time handling
+chrono = { version = "0.4.42", features = ["serde"] }
+
+# Serialization and Deserialization
+serde = { version = "1.0", features = ["derive"] }
+
+# Error handling
+anyhow = "1.0"
+thiserror = "2.0.17"
+
+# Data type
+rust_decimal = "1.27.0"
+
+# Logging message
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+## WORK WITH FILES
+
+# .ENV file
+dotenv = "0.15.0"
+
+# .JSON file
+serde_json = "1.0.145"
+
+# .YAML file
+serde_yaml = "0.9.33"
+reqwest = "0.12.23"
+futures-util = "0.3.31"
+
+
+
