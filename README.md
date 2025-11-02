@@ -1,4 +1,13 @@
-# 📊 TradeMox — WebSocket Trading API
+<h1>
+  <img src="./docs/images/icon.png" width="60" align="left" style="margin-right: 10px;">
+  TradeMox
+</h1>
+
+<br clear="left"/>
+
+[![Rust](https://img.shields.io/badge/rust-1.70+-orange.svg)](https://www.rust-lang.org)
+[![License](https://img.shields.io/badge/license-Apache2.0-blue.svg)](LICENSE)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
 
 High-performance, developer-friendly WebSocket API for streaming market data built with Rust, Axum, and Tokio.
 
@@ -10,35 +19,33 @@ High-performance, developer-friendly WebSocket API for streaming market data bui
 
 ---
 
-## 💼 Quick Start
+### <img src="./docs/images/icon.png" width="24" align="top"> Quick Start
 
-### Prerequisites
+### <img src="./docs/images/icon.png" width="24" align="top"> Prerequisites
 - Rust toolchain installed (`rustup`)
 - A WebSocket client (e.g., `websocat`)
 
-### Run the server (Two terminals)
+### <img src="./docs/images/icon.png" width="24" align="top"> Run the server (Two terminals)
 
-**Terminal 1:**
+1️⃣ **Terminal:**
+
+- **On Linux/Max:**
 ```bash
-# Build and run (Linux/Mac)
 cargo build --release
 RUST_LOG=info cargo run --release
 ```
 
-**On Windows (PowerShell):**
+- **On Windows (PowerShell):**
 ```powershell
 cargo build --release
 $env:RUST_LOG = "info"; cargo run --release
 ```
 
-**Terminal 2:**
+2️⃣ **Terminal:**
 ```bash
 # Connect with websocat
 websocat "ws://127.0.0.1:3013/ws?ticker=BTC-USD&start=2025-01-01&end=2025-01-10"
-```
 
-**Examples:**
-```bash
 # Stocks
 websocat "ws://127.0.0.1:3013/ws?ticker=AAPL&start=2025-01-01&end=2025-01-10"
 
@@ -46,16 +53,16 @@ websocat "ws://127.0.0.1:3013/ws?ticker=AAPL&start=2025-01-01&end=2025-01-10"
 websocat "ws://127.0.0.1:3013/ws?ticker=EUR-USD&start=2025-01-01&end=2025-01-10"
 ```
 
-**Health check:**
+- **Health check:**
 ```bash
 curl -i http://127.0.0.1:3013/healthz
 ```
 
 ---
 
-## 💼 API
+### <img src="./docs/images/icon.png" width="24" align="top"> API
 
-### ```WebSocket Endpoint```
+#### 1️⃣```WebSocket Endpoint```
 
 **Path:** `/ws`  
 **Method:** `GET`  
@@ -66,7 +73,7 @@ curl -i http://127.0.0.1:3013/healthz
 
 On successful upgrade, the server streams data messages as JSON text frames.
 
-### ```Validation Rules```
+#### 2️⃣```Validation Rules```
 
 **Ticker:**
 - Not empty
@@ -81,9 +88,9 @@ Invalid values produce a JSON error response with HTTP 400.
 
 ---
 
-## 💼 Error Responses (JSON)
+### <img src="./docs/images/icon.png" width="24" align="top"> Error Responses (JSON)
 
-**Format:**
+- **Format:**
 ```json
 {
   "error": "InvalidTicker | InvalidDate | InvalidQuery",
@@ -93,9 +100,7 @@ Invalid values produce a JSON error response with HTTP 400.
 }
 ```
 
-**Examples:**
-
-**Invalid ticker:**
+- **Invalid ticker:**
 ```json
 {
   "error": "InvalidTicker",
@@ -104,7 +109,7 @@ Invalid values produce a JSON error response with HTTP 400.
 }
 ```
 
-**Invalid date:**
+- **Invalid date:**
 ```json
 {
   "error": "InvalidDate",
@@ -113,7 +118,7 @@ Invalid values produce a JSON error response with HTTP 400.
 }
 ```
 
-**Invalid query shape (parsing failed):**
+- **Invalid query shape (parsing failed):**
 ```json
 {
   "error": "InvalidQuery",
@@ -124,7 +129,7 @@ Invalid values produce a JSON error response with HTTP 400.
 
 ---
 
-## 💼 Switching Stream During Session (optional)
+### <img src="./docs/images/icon.png" width="24" align="top"> Switching Stream During Session (optional)
 
 You can send a text message with a JSON payload to switch stream parameters at runtime:
 
@@ -134,19 +139,18 @@ You can send a text message with a JSON payload to switch stream parameters at r
 
 ---
 
-## 💼 Configuration
+### <img src="./docs/images/icon.png" width="24" align="top"> Configuration
 
-**Environment variables:**
+1️⃣ **Environment variables:**
 - `DEFAULT_TICKER` — default ticker if query param omitted (e.g., XAUUSD)
 - `DEFAULT_START` — default start date (format YYYY-MM-DD)
 - `DEFAULT_END` — default end date (format YYYY-MM-DD)
 - `DEFAULT_ORIGIN` — fallback allowed origin for CORS
 
-**CORS via config.yaml:**
+2️⃣ **CORS via config.yaml:**
 - If present, allowed origins are loaded from `config.yaml`
-- Fallback to `DEFAULT_ORIGIN` if config.yaml is missing or invalid
-
-**Example config.yaml (CORS section):**
+- Fallback to `DEFAULT_ORIGIN` if config.yaml is missing or invalid 
+- config.yaml (CORS section):
 ```yaml
 cors:
   origins:
@@ -156,39 +160,39 @@ cors:
 
 ---
 
-## 💼 SCHEMA
+### <img src="./docs/images/icon.png" width="24" align="top"> Schema
 
 <img width="1189" height="765" alt="Image" src="https://github.com/user-attachments/assets/d0f7bf74-3a38-4381-b2ec-85b1fcc236a1" />
 
 ---
 
-## 💼 Development
+### <img src="./docs/images/icon.png" width="24" align="top"> Development
 
-**Run tests:**
+- **Run tests:**
 ```bash
 cargo test -- --nocapture
 ```
 
-**Run a specific test file:**
+- **Run a specific test file:**
 ```bash
 cargo test --test ws_upgrade_test -- --nocapture
 ```
 
-**Use debug logs:**
+- **Use debug logs:**
 ```bash
 RUST_LOG=debug cargo run
 ```
 
-**On Windows (PowerShell):**
+- **On Windows (PowerShell):**
 ```powershell
 $env:RUST_LOG = "debug"; cargo run
 ```
 
 ---
 
-## 💼 CI (GitHub Actions)
+### <img src="./docs/images/icon.png" width="24" align="top"> CI (GitHub Actions)
 
-Create `.github/workflows/ci.yaml`:
+- Create `.github/workflows/ci.yaml`:
 
 ```yaml
 name: CI
@@ -249,7 +253,7 @@ jobs:
         run: cargo doc --no-deps --all-features
 ```
 
-**Optional (multi-OS matrix):**
+- **Optional (multi-OS matrix):**
 ```yaml
 strategy:
   matrix:
@@ -259,7 +263,7 @@ runs-on: ${{ matrix.os }}
 
 ---
 
-## 💼 Commercial Highlights
+### <img src="./docs/images/icon.png" width="24" align="top"> Commercial Highlights
 
 - Reliable streaming with strict parameter validation
 - JSON error contracts for easy client integration
@@ -271,7 +275,7 @@ For enterprise inquiries, integration support, or custom feeds, please contact y
 
 ---
 
-## 💼 Commercial Licensing
+### <img src="./docs/images/icon.png" width="24" align="top"> Commercial Licensing
 
 This software is available under flexible licensing options:
 
@@ -279,8 +283,10 @@ This software is available under flexible licensing options:
 - **Commercial License**: Available for enterprise deployments
 - **Support & Consulting**: Professional services available
 
-## 📫 Contact
-- 📧 Email:    dsddevs@gmail.com
-- 📞 Telegram: @dsddevs / +998906006989
+### <img src="./docs/images/icon.png" width="24" align="top"> Contact
+
+- 📧 dsddevs@gmail.com
+- <img src="./docs/images/telegram.png" width="24" valign="middle"> @dsddevs / +998906006989
+
 
 © 2025 TradeMox | Лицензия Apache 2.0
