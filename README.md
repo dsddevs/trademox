@@ -1,5 +1,5 @@
 <h1>
-  <img src="./docs/images/icon.png" width="60" align="left" style="margin-right: 10px;">
+  <img src="./docs/images/icon.png" width="50" align="left" style="margin-right: 10px;">
   TradeMox
 </h1>
 
